@@ -1,0 +1,28 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <p>Le point de départ se trouve en 1985-12-31</p>
+        <p>Le point d'arrivé est inconnu</p>
+        <p>{{ info }}</p>
+        <form method="post" action="/">
+        <div class="form-group">
+            <label for="interval">Entrer en secondes le voyage dans le temps pour localiser Doc (- pour le passé et + pour le futur):</label>
+            <input type="number" class="form-control" name="interval" id="interval">
+        </div>
+        <button type="submit" class="btn btn-primary">Localiser Doc</button>
+        </form>
+        {% if error is defined %}
+            <p>{{ error }}</p>
+        {% else %}
+            <p>{{ doc }}</p>
+        {% endif %}
+        <form method="post" action="/step">
+            <div class="form-group">
+                <label for="step">Entrer en secondes le pas du voyage temporel pour repartir avec Doc (- pour le passé et + pour le futur, limité à 1 mois 1 semaine et 1 jour soit 3369600s):</label>
+                <input type="number" class="form-control" name="step" id="step">
+            </div>
+            <button type="submit" class="btn btn-primary">Voyager</button>
+        </form>
+    </div>
+{% endblock %}
